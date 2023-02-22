@@ -23,6 +23,8 @@ console.log('lesson 2');
 
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
+const my = (a: number) => (b: number) => a + b
+
 
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
@@ -32,6 +34,12 @@ console.log('lesson 2');
 // const counter2 = makeCounter();
 // counter2(); // 1
 // counter(); // 3
+const makeCounter = () => {
+    let x = 0
+    return () => {
+        return x += 1
+    }
+}
 
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
@@ -40,7 +48,18 @@ console.log('lesson 2');
 // decrease: -1
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
+const makeCounter1 = (a: number) => {
+    let x = a
+    return {
+        increase: () => x = x + 1,
+        decrease: () => x = x - 1,
+        reset: () => {
+            x = 0
+        },
+        set: (b: number) => x = b
 
+    }
+}
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
 // и что бы корректно работали следующие вызовы:
@@ -51,6 +70,19 @@ console.log('lesson 2');
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
 
+// const superSum = (a: number) => {
+//     return (...x:[]) => {
+//         return (...y: []) => {
+//             return (...z: []) => {
+//                 return [...x,...y,...z].reduce((acc,el,currentIndex)=>{
+//                     if (currentIndex < a) {
+//                         return acc + el
+//                     } else return acc
+//                 })
+//             }
+//         }
+//     }
+// }
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
 // Task 05
@@ -58,6 +90,21 @@ console.log('lesson 2');
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
-
+function flat(arr:[],b:number) {
+    let newArr:any ;
+    let i=0
+    while(i<b) {
+        newArr=[]
+        for (let i = 0; i < arr.length; i++) {
+            if (Array.isArray(arr[i])) {
+                newArr = [...newArr,...arr[i]]
+            } else newArr.push(arr[i])
+        }
+        i++
+        arr = newArr
+    }
+    return newArr
+}
 // just a plug
-export default () => {};
+export default () => {
+};

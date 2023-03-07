@@ -70,21 +70,20 @@ const makeCounter1 = (a: number) => {
 // 5) superSum(3)(2,5)(3) //10
 // 6) superSum(3)(2,5)(3,9) //10
 
-// const superSum = (a: number) => {
-//     return (...x:[]) => {
-//         return (...y: []) => {
-//             return (...z: []) => {
-//                 return [...x,...y,...z].reduce((acc,el,currentIndex)=>{
-//                     if (currentIndex < a) {
-//                         return acc + el
-//                     } else return acc
-//                 })
-//             }
-//         }
+// const superSum = (a) => {
+//     if(a===0) return 0
+//     let arr = []
+//     return function fn(...b) {
+//         arr = arr.concat(b)
+//         if(arr.length>=a) return  console.log(arr.reduce((acc,el,currentIndex)=>{
+//             if (currentIndex < a) {
+//                 return acc + el
+//             } else return acc
+//         },0))
+//         else return fn
 //     }
+//
 // }
-// P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
-
 // Task 05
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
 
